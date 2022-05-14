@@ -9,6 +9,7 @@ using static MainInput;
 using static Point;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(PickUp))]
 public class PlayerMovement : MonoBehaviour, IInGameActions
 {
 	public Leaderboard leaderboard;
@@ -16,8 +17,7 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 	public Timer timer;
 	public SOMovementPerams perams;
 	public UnityEvent EndReached = new UnityEvent();
-	MainInput controls;
-	MainInput.InGameActions play;
+	MainInput controls; MainInput.InGameActions play;
 
 	Vector3 respawnPoint = Vector3.zero;
 
@@ -27,31 +27,38 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 	{
 		if(other.gameObject.name.ToLower() == "floor")
 			respawn();
+
+
+
 	}
 
 	private void OnTriggerEnter(Collider other)
 	{
 
-		if(other.gameObject.tag != "Point") return;
 
-		switch(other.gameObject.GetComponent<Point>().type)
-		{
-		case PointType.START:
-			//nothing I guess?
-			timer.begin();
-			break;
-		case PointType.CHECK:
-			//respawn
-			respawnPoint = other.gameObject.transform.position;
-			break;
-		case PointType.END:
-			//classic
-			timer.end();
-			EndReached.Invoke();
-			showLeaderboard.Show();
-			break;
-		}
+
+		if(other.gameObject.TryGetComponent<Point>(out var point))
+			switch(point.type)
+			{
+			case PointType.START:
+				//nothing I guess?
+				timer.begin();
+				break;
+			case PointType.CHECK:
+				//respawn
+				respawnPoint = point.transform.position;
+				break;
+			case PointType.END:
+				//classic
+				timer.end();
+				EndReached.Invoke();
+				showLeaderboard.Show();
+				break;
+			}
+
+
 	}
+
 
 	void respawn()
 	{
@@ -111,9 +118,7 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 
 		if(!move) return;
 
-		pos = new Vector3(DeadzoneValue(ctx.ReadValue<Vector2>().x, perams.deadzone), 0, DeadzoneValue(ctx.ReadValue<Vector2>().y, perams.deadzone)).normalized;
-
-
+		pos = new Vector3(DeadzoneValue(ctx.ReadValue<float>(), perams.deadzone), 0, 0).normalized;
 
 	}
 
@@ -155,7 +160,7 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 			{ respawnPoint = point.gameObject.transform.position; respawn(); break; }
 
 		Physics.gravity = new Vector3(0, -33.141596f, 0);
-		//	rot = transform.GetChild(0).rotation.eulerAngles;
+		rot = transform.GetChild(0).rotation.eulerAngles;
 		if(controls == null)
 		{
 			controls = new MainInput();
@@ -172,9 +177,10 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 		throw new System.NotImplementedException();
 	}
 
-	public void OnPickUpDown(InputAction.CallbackContext context)
+	public bool pickupPressed { get; private set; } = false;
+	public void OnPickUpDown(InputAction.CallbackContext ctx)
 	{
-		throw new System.NotImplementedException();
+	//	throw new System.NotImplementedException();
 	}
 
 	public void OnInventory(InputAction.CallbackContext context)

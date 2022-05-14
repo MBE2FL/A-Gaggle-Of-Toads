@@ -31,7 +31,7 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
                     ""name"": ""Movement"",
                     ""type"": ""Value"",
                     ""id"": ""1842492f-4989-4b6e-9f92-eba2b1bda235"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": """",
                     ""processors"": ""StickDeadzone"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -42,7 +42,7 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
                     ""id"": ""cc6b9327-30b3-4bcc-8dbc-3183b731fc82"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -77,7 +77,7 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0ca5b3a6-1990-4a1e-b45a-fa6666e05aeb"",
-                    ""path"": ""<Gamepad>/leftStick"",
+                    ""path"": ""<Gamepad>/leftStick/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -86,8 +86,8 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Left/right"",
-                    ""id"": ""7d77b3bc-1445-45cb-8a48-8e2b48a476fe"",
+                    ""name"": ""1D Axis"",
+                    ""id"": ""04474169-09ff-4aec-a074-0e9f509fe265"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -98,7 +98,7 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""dfd1301b-b307-42fc-a2f3-bf7f05ae692d"",
+                    ""id"": ""263f8ef8-b0c2-47d5-b4fe-2d780443496b"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -109,7 +109,7 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""77c04f1a-a45c-4dd8-bf45-80a686c81bba"",
+                    ""id"": ""6e51f538-fe79-40fa-ae86-68ec18af61bd"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -132,7 +132,18 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""044cf7e7-59fe-4d1b-bc61-e7964518881d"",
-                    ""path"": """",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pick Up/Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7ef19b3a-5fb4-4b8c-9210-59e3c0fa6fc0"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

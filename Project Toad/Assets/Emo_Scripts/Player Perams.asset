@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Player Perams
   m_EditorClassIdentifier: 
   deadzone: 0.2
-  moveSpd: 50
-  moveMax: 15
+  moveForce: 50
+  jumpForce: 10
+  moveMaxVel: 15
   rotSpd: 50
-  jumpForce: 25
+  slowPercent: 0.03
