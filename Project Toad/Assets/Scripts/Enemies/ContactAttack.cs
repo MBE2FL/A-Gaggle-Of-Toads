@@ -22,12 +22,11 @@ public class ContactAttack : MonoBehaviour
         {
             if (collision.collider.tag == "Player")
             {
+                _attackTimer = 0.0f;
+
                 Health health = collision.gameObject.GetComponent<Health>();
                 Debug.Assert(health, "ContactAttack: OnCollisionEnter: Players's health not assigned!");
                 health.TakeDamage(_enemyDamageData.Damage);
-                _attackTimer = 0;
-
-                Debug.Log("Attacked");
             }
         }
     }
