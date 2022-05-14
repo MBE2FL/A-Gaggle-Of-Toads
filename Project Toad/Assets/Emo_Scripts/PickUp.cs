@@ -22,16 +22,13 @@ public class PickUp : MonoBehaviour
 			}
 
 	}
+
 	public bool pickupPressed { get; private set; } = false;
 
-	public void OnPickUpDown(InputAction.CallbackContext ctx)
-	{
-		pickupPressed = ctx.performed;
+	public void OnPickUpDown(InputAction.CallbackContext ctx)=>	pickupPressed = ctx.performed;	
 
-	}
 	private void OnEnable()
 	{
-
 		if(controls == null)
 		{
 			controls = new MainInput();
@@ -42,6 +39,7 @@ public class PickUp : MonoBehaviour
 		}
 		play.Enable();
 	}
+
 	void OnDisable() =>
 		play.Disable();
 }
