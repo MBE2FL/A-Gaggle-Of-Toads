@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu Scenes/Opening Scene.unity
+    guid: 94f165b9644046a44a76904079365030
+  - enabled: 1
+    path: Assets/Scenes/Menu Scenes/Main Menu Scene.unity
+    guid: e7c5463af909a6141b112a71a11e5c3d
+  - enabled: 1
+    path: Assets/Scenes/Menu Scenes/Level Select Scene.unity
+    guid: 6ed87e6ef377c134aa5eeb844d689202
+  - enabled: 1
+    path: Assets/Scenes/Menu Scenes/Player Join Scene.unity
+    guid: 2547ef978d7f9d74e9e0af2916658405
+  - enabled: 1
+    path: Assets/Scenes/Menu Scenes/Game Over Scene.unity
+    guid: 7e6d63dcb8083cc40b23dc3f3b27dfe8
   m_configObjects: {}
