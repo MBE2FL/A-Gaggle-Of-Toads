@@ -14,14 +14,13 @@ public class Health : MonoBehaviour
 
 	private void Awake()
 	{
-		val = 100;
+		val = 4;
 		dead = false;
 	}
-
 
 	public byte val { get => health; private set { health = value; if(val <= 0 && !dead) { dead = true; onNoHealth.Invoke(); } } }
 
 	public void setHealth(byte val) => this.val = val;
-	public void AddHealth(byte inc) { val += inc; onTakeDamage.Invoke(val); }
-	public void TakeDamage(byte inc) { val += inc; onAddHealth.Invoke(val); }
+	public void AddHealth(byte inc) { val += inc; onAddHealth.Invoke(val); }
+	public void TakeDamage(byte dec) { val -= dec; onTakeDamage.Invoke(val); }
 }
