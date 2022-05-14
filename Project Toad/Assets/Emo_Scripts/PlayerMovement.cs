@@ -17,9 +17,14 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 	public Timer timer;
 	public SOMovementPerams perams;
 	public UnityEvent EndReached = new UnityEvent();
+
 	MainInput controls; MainInput.InGameActions play;
 
-	Vector3 respawnPoint = Vector3.zero;
+	/// <summary>
+	/// makes sure the player can not move
+	/// </summary>
+	public bool stunned { get; set; } = false;
+	Transform respawnPoint;
 
 	bool move, rotate;
 
@@ -27,53 +32,47 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 	{
 		if(other.gameObject.name.ToLower() == "floor")
 			respawn();
-
-
-
 	}
 
 	private void OnTriggerEnter(Collider other)
 	{
-
-
 
 		if(other.gameObject.TryGetComponent<Point>(out var point))
 			switch(point.type)
 			{
 			case PointType.START:
 				//nothing I guess?
-				timer.begin();
+				timer?.begin();
 				break;
 			case PointType.CHECK:
 				//respawn
-				respawnPoint = point.transform.position;
+				respawnPoint = point.transform;
 				break;
 			case PointType.END:
-				//classic
-				timer.end();
+
+				timer?.end();
 				EndReached.Invoke();
-				showLeaderboard.Show();
+				showLeaderboard?.Show();
 				break;
 			}
-
-
 	}
 
 
 	void respawn()
 	{
-		transform.position = respawnPoint;
+		transform.position = respawnPoint.position;
 		GetComponent<Rigidbody>().velocity = Vector3.zero;
+		transform.GetChild(0).rotation = respawnPoint.rotation;
 	}
 
 
 	// Update is called once per frame
 	void Update()
 	{
-		if(move)
+		if(move && !stunned)
 		{
-			Vector3 forward = transform.GetChild(0).forward * new float3(1, 0, 1);
-			Vector3 right = transform.GetChild(0).right * new float3(1, 0, 1);
+			Vector3 forward = transform.forward * new float3(1, 0, 1);
+			Vector3 right = transform.right * new float3(1, 0, 1);
 			forward.Normalize();
 			right.Normalize();
 
@@ -85,7 +84,8 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 			//velocity cap
 			GetComponent<Rigidbody>().velocity =
 			math.length(GetComponent<Rigidbody>().velocity * new float3(1, 0, 1)) > perams.moveMaxVel ?
-			(Vector3)(GetComponent<Rigidbody>().velocity.normalized * new float3(perams.moveMaxVel, 0, perams.moveMaxVel) + new float3(0, GetComponent<Rigidbody>().velocity.y, 0)) :
+			(Vector3)(GetComponent<Rigidbody>().velocity.normalized * new float3(perams.moveMaxVel, 0, perams.moveMaxVel) +
+			new float3(0, GetComponent<Rigidbody>().velocity.y, 0)) :
 			GetComponent<Rigidbody>().velocity;
 
 			////Positional movement
@@ -103,6 +103,7 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 				new Vector3(0, GetComponent<Rigidbody>().velocity.y, 0);
 
 		}
+
 		if(rotate)
 		{
 			rot += rotVec * Time.deltaTime * perams.rotSpd;
@@ -157,7 +158,7 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 
 		foreach(var point in points)
 			if(point.type == Point.PointType.START)
-			{ respawnPoint = point.gameObject.transform.position; respawn(); break; }
+			{ respawnPoint = point.gameObject.transform; respawn(); break; }
 
 		Physics.gravity = new Vector3(0, -33.141596f, 0);
 		rot = transform.GetChild(0).rotation.eulerAngles;
@@ -169,6 +170,7 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 		}
 		play.Enable();
 	}
+
 	void OnDisable() =>
 		play.Disable();
 
@@ -177,13 +179,29 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 		throw new System.NotImplementedException();
 	}
 
-	public bool pickupPressed { get; private set; } = false;
+
 	public void OnPickUpDown(InputAction.CallbackContext ctx)
 	{
-	//	throw new System.NotImplementedException();
+
+		
 	}
 
 	public void OnInventory(InputAction.CallbackContext context)
+	{
+		//	throw new System.NotImplementedException();
+	}
+
+	public void OnCrouch(InputAction.CallbackContext context)
+	{
+		throw new System.NotImplementedException();
+	}
+
+	public void OnInteract(InputAction.CallbackContext context)
+	{
+		throw new System.NotImplementedException();
+	}
+
+	public void OnYeet(InputAction.CallbackContext context)
 	{
 		throw new System.NotImplementedException();
 	}

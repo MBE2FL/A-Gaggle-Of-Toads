@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 568885fc438dd8647956aa2a4ec8690d, type: 3}
-  m_Name: Player Perams
+  m_Name: New SO Movement Perams
   m_EditorClassIdentifier: 
   deadzone: 0.2
   moveForce: 50
-  jumpForce: 10
+  jumpForce: 25
   moveMaxVel: 15
   rotSpd: 50
   slowPercent: 0.1

@@ -12,20 +12,37 @@ public class PickUp : MonoBehaviour
 	MainInput controls; MainInput.InGameActions play;
 	private void OnTriggerStay(Collider other)
 	{
-
-		if(other.gameObject.TryGetComponent<Item>(out var tmp2))
+		//Item Logic
+		if(other.gameObject.TryGetComponent<Item>(out var item))
 			if(pickupPressed)
 			{
-				tmp2.transform.SetParent(transform);
-				(tmp2.gameObject).SetActive(false);
+				item.transform.SetParent(transform);
+				item.gameObject.SetActive(false);
 				PickupObject.Invoke();
-			}
 
+			}
 	}
 
 	public bool pickupPressed { get; private set; } = false;
 
-	public void OnPickUpDown(InputAction.CallbackContext ctx)=>	pickupPressed = ctx.performed;	
+	int lastChildCount = 0;
+	public void OnPickUpDown(InputAction.CallbackContext ctx)
+	{
+		pickupPressed = ctx.performed;
+		
+		if(ctx.started)
+			lastChildCount = transform.childCount;
+		
+		if(ctx.canceled)
+			if(transform.childCount == lastChildCount)
+			{
+				if(transform.childCount > 1)
+				{
+					var obj = transform.GetChild(1).gameObject;
+					obj.SetActive(true); obj.transform.SetParent(null);
+				}
+			}
+	}
 
 	private void OnEnable()
 	{

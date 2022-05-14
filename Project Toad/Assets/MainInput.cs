@@ -65,8 +65,35 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Inventory"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""ee1d8de3-f26b-42fa-be76-bbabeca84b9b"",
+                    ""expectedControlType"": """",
+                    ""processors"": ""Normalize(min=-1,max=1)"",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Crouch"",
+                    ""type"": ""Button"",
+                    ""id"": ""bbc30fe2-4454-4648-b4e4-a048b25d7c46"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""a3bb760d-5cb9-4892-8ed2-033d3a7266d6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Yeet"",
+                    ""type"": ""Button"",
+                    ""id"": ""b7030edf-f377-44f5-a127-f59153f4efa4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -132,7 +159,7 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""044cf7e7-59fe-4d1b-bc61-e7964518881d"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -148,17 +175,6 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pick Up/Down"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""be313b7b-f5b4-4a00-aa01-25abadeaae78"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Inventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -181,6 +197,116 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6beb2419-f223-4588-a190-377a76fc8378"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68d0137e-90c1-40ba-aca7-941aee01161d"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68842ff4-4cf5-498a-b4d2-e3870d277268"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f8a38cf4-f089-47b2-a165-de0a33b1ecc3"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""gamepad"",
+                    ""id"": ""43296693-26dd-490d-aecd-4129ea65fe2b"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""9bccab2b-a42e-47f9-af2c-98c0cce47637"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""9f71d0d0-dc13-4964-8058-41ab58bdf548"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c858d96b-08f3-4089-9f0b-79ca712fe254"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cb7a7a70-fd8a-44a2-a1b9-6fb2867d4cf2"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Yeet"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""127d7aac-69c7-4602-bf54-0252e8a5224c"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Yeet"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -224,6 +350,9 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
         m_InGame_Pause = m_InGame.FindAction("Pause", throwIfNotFound: true);
         m_InGame_PickUpDown = m_InGame.FindAction("Pick Up/Down", throwIfNotFound: true);
         m_InGame_Inventory = m_InGame.FindAction("Inventory", throwIfNotFound: true);
+        m_InGame_Crouch = m_InGame.FindAction("Crouch", throwIfNotFound: true);
+        m_InGame_Interact = m_InGame.FindAction("Interact", throwIfNotFound: true);
+        m_InGame_Yeet = m_InGame.FindAction("Yeet", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Newaction = m_Menu.FindAction("New action", throwIfNotFound: true);
@@ -291,6 +420,9 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Pause;
     private readonly InputAction m_InGame_PickUpDown;
     private readonly InputAction m_InGame_Inventory;
+    private readonly InputAction m_InGame_Crouch;
+    private readonly InputAction m_InGame_Interact;
+    private readonly InputAction m_InGame_Yeet;
     public struct InGameActions
     {
         private @MainInput m_Wrapper;
@@ -300,6 +432,9 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_InGame_Pause;
         public InputAction @PickUpDown => m_Wrapper.m_InGame_PickUpDown;
         public InputAction @Inventory => m_Wrapper.m_InGame_Inventory;
+        public InputAction @Crouch => m_Wrapper.m_InGame_Crouch;
+        public InputAction @Interact => m_Wrapper.m_InGame_Interact;
+        public InputAction @Yeet => m_Wrapper.m_InGame_Yeet;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -324,6 +459,15 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
                 @Inventory.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnInventory;
                 @Inventory.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnInventory;
                 @Inventory.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnInventory;
+                @Crouch.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnCrouch;
+                @Crouch.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnCrouch;
+                @Crouch.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnCrouch;
+                @Interact.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnInteract;
+                @Yeet.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnYeet;
+                @Yeet.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnYeet;
+                @Yeet.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnYeet;
             }
             m_Wrapper.m_InGameActionsCallbackInterface = instance;
             if (instance != null)
@@ -343,6 +487,15 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
                 @Inventory.started += instance.OnInventory;
                 @Inventory.performed += instance.OnInventory;
                 @Inventory.canceled += instance.OnInventory;
+                @Crouch.started += instance.OnCrouch;
+                @Crouch.performed += instance.OnCrouch;
+                @Crouch.canceled += instance.OnCrouch;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+                @Yeet.started += instance.OnYeet;
+                @Yeet.performed += instance.OnYeet;
+                @Yeet.canceled += instance.OnYeet;
             }
         }
     }
@@ -387,6 +540,9 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnPickUpDown(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
+        void OnCrouch(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
+        void OnYeet(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
