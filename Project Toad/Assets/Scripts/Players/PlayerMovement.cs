@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 			{
 			case PointType.START:
 				//nothing I guess?
-				timer?.begin();
+				timer?.Begin();
 				break;
 			case PointType.CHECK:
 				//respawn
@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 				break;
 			case PointType.END:
 
-				timer?.end();
+				timer?.End();
 				EndReached.Invoke();
 				showLeaderboard?.Show();
 				break;
@@ -69,6 +69,8 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 	// Update is called once per frame
 	void Update()
 	{
+		
+
 		if(move && !stunned)
 		{
 			Vector3 forward = transform.forward * new float3(1, 0, 1);
@@ -144,12 +146,17 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 
 	public void OnJump(InputAction.CallbackContext ctx)
 	{
-		//if(!ctx.started) return;
-		//var body = GetComponent<Rigidbody>();
-		//var onfloor = Physics.Raycast(transform.position, Vector3.down, 1.07f);
+		
+		if(!ctx.started) return;
+		var body = GetComponent<Rigidbody>();
+		var collider = GetComponentInChildren<Collider>();
+		
+		var onfloor = Physics.Raycast(collider.bounds.min, Vector3.down, 0.5f);
+		Debug.DrawRay(collider.bounds.min, Vector3.down, Color.red, 0.5f);
 
-		//if(onfloor)
-		//	body.AddForce(new Vector3(0, perams.jumpForce, 0), ForceMode.Impulse);
+
+		if(onfloor)
+			body.AddForce(new Vector3(0, perams.jumpForce, 0), ForceMode.Impulse);
 	}
 
 	private void OnEnable()
