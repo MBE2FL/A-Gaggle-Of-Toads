@@ -12,12 +12,12 @@ public class PickUp : MonoBehaviour
 	MainInput controls; MainInput.InGameActions play;
 	private void OnTriggerStay(Collider other)
 	{
-		//Item Logic
-		if(other.gameObject.TryGetComponent<Item>(out var item))
+		//Mechanic Logic
+		if(other.gameObject.TryGetComponent<Mechanic>(out var mechanic))
 			if(pickupPressed)
 			{
-				item.transform.SetParent(transform);
-				item.gameObject.SetActive(false);
+				mechanic.transform.SetParent(transform);
+				mechanic.gameObject.SetActive(false);
 				PickupObject.Invoke();
 
 			}

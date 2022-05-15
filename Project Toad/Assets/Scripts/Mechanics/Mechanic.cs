@@ -2,49 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public abstract class Mechanic : MonoBehaviour
 {
-    bool _pickedUp = false;
 
 
-    public bool PickedUp
-    {
-        get
-        {
-            return _pickedUp;
-        }
-        set
-        {
-            _pickedUp = value;
-            onPickedUpDown();
-        }
-    }
+	private void Awake()
+	{
+		var coll=GetComponent<Collider>();
+		//coll.convex = true;
+		coll.isTrigger = true;
+	}
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
+	public abstract void use();
 
-    public abstract void use();
 
-    void onPickedUpDown()
-    {
-        // Turn renderer and collisions off.
-        if (_pickedUp)
-        {
-
-        }
-        // Turn renderer and collisions on.
-        else
-        {
-
-        }
-    }
 }
