@@ -13,6 +13,8 @@ public abstract class Mechanic : MonoBehaviour
 	GameObject _target;
 	MainInput _mainInput;
 	MainInput.InGameActions _inGameActions;
+	[SerializeField]
+	float _timeToEnablePickup = 1.0f;
 
 
 
@@ -92,7 +94,7 @@ public abstract class Mechanic : MonoBehaviour
 
 	IEnumerator WaitToEnablePickup()
     {
-		yield return new WaitForSeconds(1.0f);
+		yield return new WaitForSeconds(_timeToEnablePickup);
 		_collider.enabled = true;
 		Debug.Log("Mechanic available for pickup!");
 	}

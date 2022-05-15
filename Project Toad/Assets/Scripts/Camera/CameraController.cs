@@ -18,11 +18,14 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     bool _isZoomingOut = false;
     [SerializeField]
-    float _minZoomFactor;
+    float _currZoomLevel;
     [SerializeField]
-    float _maxZoomFactor;
+    float _minZoomLevel;
+    [SerializeField]
+    float _maxZoomLevel;
     [SerializeField]
     float _camSpeed = 65.0f;
+    bool _shouldZoomIn = false;
 
 
 
@@ -32,54 +35,93 @@ public class CameraController : MonoBehaviour
         Debug.Assert(_playerOne && _playerTwo, "CameraController: Start: Player one and/or two not assigned!");
         _cam = GetComponent<Camera>();
         Debug.Assert(_cam, "CameraController: Start: Camera not assigned!");
-        _targetPos.z = transform.position.z;
+        //_targetPos.z = transform.position.z;
+        _currZoomLevel = _minZoomLevel;
 
         _playerOneBoundary = _playerOne.GetComponentInChildren<Boundary>();
         Debug.Assert(_playerOneBoundary, "CameraController: Start: Player one's boundary not assigned!");
         _playerTwoBoundary = _playerTwo.GetComponentInChildren<Boundary>();
         Debug.Assert(_playerTwoBoundary, "CameraController: Start: Player two's boundary not assigned!");
+
+
+        StartCoroutine(waitForZoomOut());
     }
 
     // Update is called once per frame
     void Update()
     {
         // Keep camera in the middle of both players.
-        Vector2 medianPosition = (_playerOne.position + _playerTwo.position) * 0.5f;
-        _targetPos = new Vector3(medianPosition.x, medianPosition.y, _targetPos.z);
+        //Vector2 medianPosition = (_playerOne.position + _playerTwo.position) * 0.5f;
+        //_targetPos = new Vector3(medianPosition.x, medianPosition.y, _targetPos.z);
+        Vector3 medianPosition = (_playerOne.position + _playerTwo.position) * 0.5f;
+        Vector3 rayDir = (transform.position - medianPosition).normalized;
+        _targetPos = medianPosition + (rayDir * _currZoomLevel);
+
+        Vector2 medianViewPosition = _cam.WorldToViewportPoint(medianPosition);
+        Vector2 medianDiff = medianViewPosition - new Vector2(0.5f, 0.5f);
+        _targetPos += medianDiff.x * transform.right;
+        _targetPos += medianDiff.y * transform.up;
+
+        Debug.DrawLine(transform.position, medianPosition, Color.red);
+        // Debug.DrawLine(transform.rotation * _targetPos, medianPosition, Color.green);
+        Debug.DrawRay(medianPosition, rayDir, Color.green);
+        Ray midCamRay = _cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
+        Debug.DrawRay(midCamRay.origin, midCamRay.direction, Color.blue);
+
+        bool arePlayersAtScreenBoundary = _playerOneBoundary.isAtScreenBoundary(new Vector2(1.0f, 1.0f)) ||
+                                            _playerTwoBoundary.isAtScreenBoundary(new Vector2(1.0f, 1.0f));
 
 
         // Zoom out when players are at screen boundary.
-        if (_playerOneBoundary.isAtScreenBoundary(new Vector2(1.0f, 1.0f)) ||
-            _playerTwoBoundary.isAtScreenBoundary(new Vector2(1.0f, 1.0f)) ||
-            transform.position.z > (_minZoomFactor + 0.05f))
+        if (arePlayersAtScreenBoundary ||
+            //transform.position.z > (_minZoomFactor + 0.05f))
+            _currZoomLevel < (_minZoomLevel - 0.05f))
         {
-            _targetPos = new Vector3(_targetPos.x, _targetPos.y, transform.position.z - _zoomSpeed);
-            _targetPos.z = Mathf.Max(_targetPos.z, _maxZoomFactor);
+            _currZoomLevel += _zoomSpeed;
+            _currZoomLevel = Mathf.Min(_currZoomLevel, _maxZoomLevel);
             _isZoomingOut = true;
+            _shouldZoomIn = false;
         }
         // Both players are onscreen, but the camera is still zoomed out.
-        else if (!Mathf.Approximately(transform.position.z, _minZoomFactor) &&
-                transform.position.z < _minZoomFactor)
+        else if ((_currZoomLevel > _minZoomLevel) && _shouldZoomIn)
         {
-            // Wait for the camera to finish zooming out bofore zooming in.
-            if (!_isZoomingOut)
-            {
-                _targetPos = new Vector3(_targetPos.x, _targetPos.y, transform.position.z + _zoomSpeed);
-                _targetPos.z = Mathf.Min(_targetPos.z, _minZoomFactor);
-            }
-            else
-            {
-                _isZoomingOut = !Mathf.Approximately(transform.position.z, _targetPos.z);
-            }
+            //// Wait for the camera to finish zooming out bofore zooming in.
+                _currZoomLevel = Mathf.Max(_currZoomLevel, _minZoomLevel);
+                _currZoomLevel -= _zoomSpeed;
         }
         // Make sure zoom is properly reset.
-        else
-        {
-            _isZoomingOut = false;
-        }
+        //else
+        //{
+        //    _isZoomingOut = false;
+        //    _shouldZoomIn = false;
+        //}
 
 
         // Smoothly move the camera to it's target position.
         transform.position = Vector3.SmoothDamp(transform.position, _targetPos, ref _targetPosVel, Time.deltaTime * _camSpeed);
+    }
+
+    IEnumerator waitForZoomOut()
+    {
+        while (true)
+        {
+            while (_isZoomingOut)
+            {
+                yield return new WaitForSeconds(1.0f);
+
+                if (Vector3.Distance(transform.position, _targetPos) < 0.5f)
+                {
+                    _isZoomingOut = false;
+                    break;
+                }
+            }
+
+            if (!_shouldZoomIn)
+            {
+                _shouldZoomIn = true;
+            }
+
+            yield return null;
+        }
     }
 }
