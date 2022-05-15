@@ -144,12 +144,12 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 
 	public void OnJump(InputAction.CallbackContext ctx)
 	{
-		if(!ctx.started) return;
-		var body = GetComponent<Rigidbody>();
-		var onfloor = Physics.Raycast(transform.position, Vector3.down, 1.07f);
+		//if(!ctx.started) return;
+		//var body = GetComponent<Rigidbody>();
+		//var onfloor = Physics.Raycast(transform.position, Vector3.down, 1.07f);
 
-		if(onfloor)
-			body.AddForce(new Vector3(0, perams.jumpForce, 0), ForceMode.Impulse);
+		//if(onfloor)
+		//	body.AddForce(new Vector3(0, perams.jumpForce, 0), ForceMode.Impulse);
 	}
 
 	private void OnEnable()
