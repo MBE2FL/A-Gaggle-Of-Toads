@@ -15,6 +15,6 @@ MonoBehaviour:
   deadzone: 0.2
   moveForce: 50
   jumpForce: 10
-  moveMaxVel: 15
+  moveMaxVel: 5
   rotSpd: 50
   slowPercent: 0.1
