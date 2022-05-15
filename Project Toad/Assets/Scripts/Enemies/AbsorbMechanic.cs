@@ -12,8 +12,7 @@ public class AbsorbMechanic : MonoBehaviour
 
 
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _mechanicHunter = GetComponent<MechanicHunter>();
         Debug.Assert(_mechanicHunter, "AbsorbMechanic: Start: AbsorbMechanic's MechanicHunter not assigned!");
@@ -47,8 +46,13 @@ public class AbsorbMechanic : MonoBehaviour
         }
     }
 
-    void onPickedUp(PickUp pickUp)
-    {
 
+	
+
+	void onPickedUp(Mechanic mechanec)
+    {         
+            _currentMechanic = mechanec; 
+
+        
     }
 }

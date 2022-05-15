@@ -6,92 +6,80 @@ using UnityEngine.Events;
 
 public class MechanicHunter : MonoBehaviour
 {
-    NavMeshAgent _navMeshAgent;
-    PickUp _currentTarget;
-    List<PickUp> _allPickUpsInRange;
-    public UnityEvent<PickUp> _onPickedUp;
+	NavMeshAgent _navMeshAgent;
+	Mechanic _currentTarget;
+	List<Mechanic> _allMechanicsInRange;
+	public UnityEvent<Mechanic> _onPickedUp;
 
 
 
-    public PickUp CurrentTarget
-    {
-        get
-        {
-            return _currentTarget;
-        }
-    }
+	public Mechanic CurrentTarget { get => _currentTarget; }
 
-    public void dropPickUp()
-    {
-        _currentTarget = null;
-        searchForNearestPickUp();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    void searchForNearestPickUp()
-    {
-        PickUp nearestPickUp = null;
-        foreach (PickUp pickUp in _allPickUpsInRange)
-        {
-            if (Vector3.SqrMagnitude(transform.position - pickUp.transform.position) < (_navMeshAgent.remainingDistance * _navMeshAgent.remainingDistance))
-            {
-                nearestPickUp = pickUp;
-            }
-        }
-
-        if (nearestPickUp)
-        {
-            _currentTarget = nearestPickUp;
-            _navMeshAgent.SetDestination(_currentTarget.transform.position);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent<PickUp>(out var pickUp))
-        {
-            if (_currentTarget)
-            {
-                if (_currentTarget != pickUp &&
-                    (Vector3.SqrMagnitude(transform.position - pickUp.transform.position) < (_navMeshAgent.remainingDistance * _navMeshAgent.remainingDistance)))
-                {
-                    _currentTarget = pickUp;
-                    _navMeshAgent.SetDestination(_currentTarget.transform.position);
-                }
-            }
-            else
-            {
-                _currentTarget = pickUp;
-                _navMeshAgent.SetDestination(_currentTarget.transform.position);
-            }
+	public void dropMechanic()
+	{
 
 
-            if (_currentTarget != pickUp)
-            {
-                _allPickUpsInRange.Add(pickUp);
-            }
-        }
-    }
+		_currentTarget = null;
+		searchForNearestPickUp();
+	}
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.TryGetComponent<PickUp>(out var pickUp))
-        {
-            if (_currentTarget != pickUp)
-            {
-                _allPickUpsInRange.Remove(pickUp);
-            }
-        }
-    }
+	void searchForNearestPickUp()
+	{
+		Mechanic nearestMechanic = null;
+		foreach(Mechanic pickUp in _allMechanicsInRange)
+		{
+			if(Vector3.SqrMagnitude(transform.position - pickUp.transform.position) < (_navMeshAgent.remainingDistance * _navMeshAgent.remainingDistance))
+			{
+				nearestMechanic = pickUp;
+			}
+		}
+
+		if(nearestMechanic)
+		{
+			_currentTarget = nearestMechanic;
+			_navMeshAgent.SetDestination(_currentTarget.transform.position);
+		}
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if(other.TryGetComponent<Mechanic>(out var pickUp))
+			PickUpMechanic(pickUp);	
+	}
+
+	public void PickUpMechanic(Mechanic mechanic)
+	{
+		if(_currentTarget)
+		{
+			if(_currentTarget != mechanic &&
+				(Vector3.SqrMagnitude(transform.position - mechanic.transform.position) < (_navMeshAgent.remainingDistance * _navMeshAgent.remainingDistance)))
+			{
+				_currentTarget = mechanic;
+				_navMeshAgent.SetDestination(_currentTarget.transform.position);
+			}
+		}
+		else
+		{
+			_currentTarget = mechanic;
+			_navMeshAgent.SetDestination(_currentTarget.transform.position);
+		}
+
+
+		if(_currentTarget != mechanic)
+		{
+			_allMechanicsInRange.Add(mechanic);
+		}
+		_onPickedUp.Invoke(mechanic);
+	}
+
+	private void OnTriggerExit(Collider other)
+	{
+		if(other.TryGetComponent<Mechanic>(out var pickUp))
+		{
+			if(_currentTarget != pickUp)
+			{
+				_allMechanicsInRange.Remove(pickUp);
+			}
+		}
+	}
 }

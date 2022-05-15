@@ -8,7 +8,7 @@ using static MainInput;
 public class PickUp : MonoBehaviour
 {
 
-	public UnityEvent PickupObject = new UnityEvent();
+	public UnityEvent onPickupObject = new UnityEvent();
 	MainInput controls; MainInput.InGameActions play;
 	private void OnTriggerStay(Collider other)
 	{
@@ -18,7 +18,7 @@ public class PickUp : MonoBehaviour
 			{
 				mechanic.transform.SetParent(transform);
 				mechanic.gameObject.SetActive(false);
-				PickupObject.Invoke();
+				onPickupObject.Invoke();
 
 			}
 	}
