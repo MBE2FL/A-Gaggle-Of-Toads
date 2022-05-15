@@ -191,9 +191,11 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 		//	throw new System.NotImplementedException();
 	}
 
-	public void OnCrouch(InputAction.CallbackContext context)
+	bool crouchToggle=false;
+	public void OnCrouch(InputAction.CallbackContext ctx)
 	{
-		throw new System.NotImplementedException();
+		//TODO: Replace with animation later
+		if(ctx.performed) { transform.localScale *= !crouchToggle ? .5f : 2; crouchToggle = !crouchToggle; }
 	}
 
 	public void OnInteract(InputAction.CallbackContext context)
