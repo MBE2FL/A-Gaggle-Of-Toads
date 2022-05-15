@@ -34,9 +34,9 @@ public class CameraController : MonoBehaviour
         Debug.Assert(_cam, "CameraController: Start: Camera not assigned!");
         _targetPos.z = transform.position.z;
 
-        _playerOneBoundary = _playerOne.GetComponent<Boundary>();
+        _playerOneBoundary = _playerOne.GetComponentInChildren<Boundary>();
         Debug.Assert(_playerOneBoundary, "CameraController: Start: Player one's boundary not assigned!");
-        _playerTwoBoundary = _playerTwo.GetComponent<Boundary>();
+        _playerTwoBoundary = _playerTwo.GetComponentInChildren<Boundary>();
         Debug.Assert(_playerTwoBoundary, "CameraController: Start: Player two's boundary not assigned!");
     }
 

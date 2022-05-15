@@ -374,7 +374,6 @@ GameObject:
   - component: {fileID: 266390168}
   - component: {fileID: 266390167}
   - component: {fileID: 266390166}
-  - component: {fileID: 266390171}
   - component: {fileID: 266390170}
   m_Layer: 0
   m_Name: TmpPlayer_One
@@ -471,18 +470,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   health: 0
---- !u!114 &266390171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 266390165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff479860f92aead4d8c33b15d6c2bd8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &359156495
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,6 +482,7 @@ GameObject:
   - component: {fileID: 359156499}
   - component: {fileID: 359156498}
   - component: {fileID: 359156497}
+  - component: {fileID: 359156500}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -581,6 +569,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 359156495}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &359156500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359156495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff479860f92aead4d8c33b15d6c2bd8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &445209975 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8890356699427785745, guid: d5b8de414112a004a82d0437b5f7a780, type: 3}
@@ -1118,6 +1118,7 @@ GameObject:
   - component: {fileID: 1113855041}
   - component: {fileID: 1113855040}
   - component: {fileID: 1113855039}
+  - component: {fileID: 1113855042}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -1204,6 +1205,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113855037}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1113855042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113855037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff479860f92aead4d8c33b15d6c2bd8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1179558223 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8890356699427785745, guid: d5b8de414112a004a82d0437b5f7a780, type: 3}
@@ -1368,7 +1381,6 @@ GameObject:
   - component: {fileID: 1714280886}
   - component: {fileID: 1714280885}
   - component: {fileID: 1714280890}
-  - component: {fileID: 1714280889}
   m_Layer: 0
   m_Name: TmpPlayer_Two
   m_TagString: Untagged
@@ -1442,18 +1454,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1714280889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1714280884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff479860f92aead4d8c33b15d6c2bd8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1714280890
 MonoBehaviour:
   m_ObjectHideFlags: 0
