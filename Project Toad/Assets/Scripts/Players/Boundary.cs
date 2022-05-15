@@ -14,7 +14,7 @@ public class Boundary : MonoBehaviour
         _cam = Camera.main;
         Debug.Assert(_cam, "Boundary: Start: Camera not assigned!");
         _collider = GetComponent<Collider>();
-        Debug.Assert(_collider, "Boundary: Start: Box collider not assigned!");
+        Debug.Assert(_collider, "Boundary: Start: Collider not assigned!");
     }
 
     // Update is called once per frame
