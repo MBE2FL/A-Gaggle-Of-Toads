@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class Item : MonoBehaviour
+public abstract class Mechanic : MonoBehaviour
 {
 
 
@@ -13,6 +13,10 @@ public class Item : MonoBehaviour
 		//coll.convex = true;
 		coll.isTrigger = true;
 	}
+
+
+
+	public abstract void use();
 
 
 }
