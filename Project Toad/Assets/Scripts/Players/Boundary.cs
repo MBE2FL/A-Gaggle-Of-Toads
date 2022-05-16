@@ -68,7 +68,7 @@ public class Boundary : MonoBehaviour
         Vector3 currPos = transform.position;
         currPos += viewDiff.x * transform.right;
         currPos += viewDiff.y * transform.up;
-        //transform.position = currPos;
+        transform.position = currPos;
     }
 
     public bool isOverScreenBoundary(Vector2 offset)
@@ -113,7 +113,7 @@ public class Boundary : MonoBehaviour
         playerMaxViewPos.y += colliderHalfSize.y + offset.y;
         playerMaxViewPos = _cam.WorldToViewportPoint(playerMaxViewPos);
 
-        return (playerMinViewPos.x >= 0.0f && playerMaxViewPos.x <= 1.0f ||
+        return (playerMinViewPos.x >= 0.0f && playerMaxViewPos.x <= 1.0f &&
                 playerMinViewPos.y >= 0.0f && playerMaxViewPos.y <= 1.0f);
     }
 

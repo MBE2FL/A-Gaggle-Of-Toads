@@ -25,7 +25,7 @@ public class CameraController : MonoBehaviour
     float _maxZoomLevel;
     [SerializeField]
     float _camSpeed = 65.0f;
-    bool _shouldZoomIn = false;
+    bool _canZoomIn = false;
 
 
 
@@ -51,8 +51,6 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         // Keep camera in the middle of both players.
-        //Vector2 medianPosition = (_playerOne.position + _playerTwo.position) * 0.5f;
-        //_targetPos = new Vector3(medianPosition.x, medianPosition.y, _targetPos.z);
         Vector3 medianPosition = (_playerOne.position + _playerTwo.position) * 0.5f;
         Vector3 rayDir = (transform.position - medianPosition).normalized;
         _targetPos = medianPosition + (rayDir * _currZoomLevel);
@@ -66,36 +64,37 @@ public class CameraController : MonoBehaviour
         Ray midCamRay = _cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
         Debug.DrawRay(midCamRay.origin, midCamRay.direction, Color.blue);
 
-        bool arePlayersOverScreenBoundary = _playerOneBoundary.isOverScreenBoundary(new Vector2(1.0f, 1.0f)) ||
-                                            _playerTwoBoundary.isOverScreenBoundary(new Vector2(1.0f, 1.0f));
+        //bool arePlayersOverScreenBoundary = _playerOneBoundary.isOverScreenBoundary(new Vector2(1.0f, 1.0f)) ||
+        //                                    _playerTwoBoundary.isOverScreenBoundary(new Vector2(1.0f, 1.0f));
 
-        bool arePlayersInScreenBoundary = _playerOneBoundary.isOverScreenBoundary(new Vector2(-2.0f, -2.0f)) ||
-                                    _playerTwoBoundary.isOverScreenBoundary(new Vector2(-2.0f, -2.0f));
-
+        bool arePlayersInScreenBoundary = _playerOneBoundary.isInScreenBoundary(new Vector2(1.0f, 1.0f)) ||
+                                    _playerTwoBoundary.isInScreenBoundary(new Vector2(1.0f, 1.0f));
 
         // Zoom out when players are at screen boundary.
-        if (arePlayersOverScreenBoundary ||
-            //transform.position.z > (_minZoomFactor + 0.05f))
-            _currZoomLevel < (_minZoomLevel - 0.05f))
+        //if (arePlayersOverScreenBoundary ||
+        //    _currZoomLevel < (_minZoomLevel - 0.05f))
+        if (!arePlayersInScreenBoundary ||
+            _currZoomLevel < (_minZoomLevel - 0.01f))
         {
             _currZoomLevel += _zoomSpeed;
             _currZoomLevel = Mathf.Min(_currZoomLevel, _maxZoomLevel);
             _isZoomingOut = true;
-            _shouldZoomIn = false;
+            _canZoomIn = false;
         }
         // Both players are onscreen, but the camera is still zoomed out.
-        else if ((_currZoomLevel > _minZoomLevel) && _shouldZoomIn && !arePlayersInScreenBoundary)
+        else if ((_currZoomLevel > _minZoomLevel) && _canZoomIn)
         {
-            //// Wait for the camera to finish zooming out bofore zooming in.
+            if (_playerOneBoundary.isInScreenBoundary(new Vector2(5.0f, 5.0f)) ||
+                _playerTwoBoundary.isInScreenBoundary(new Vector2(5.0f, 5.0f)))
+            {
                 _currZoomLevel = Mathf.Max(_currZoomLevel, _minZoomLevel);
                 _currZoomLevel -= _zoomSpeed;
+            }
+            else
+            {
+                _canZoomIn = false;
+            }
         }
-        // Make sure zoom is properly reset.
-        //else
-        //{
-        //    _isZoomingOut = false;
-        //    _shouldZoomIn = false;
-        //}
 
 
         // Smoothly move the camera to it's target position.
@@ -106,6 +105,7 @@ public class CameraController : MonoBehaviour
     {
         while (true)
         {
+            // Wait for the camera to finish zooming out bofore zooming in.
             while (_isZoomingOut)
             {
                 yield return new WaitForSeconds(1.0f);
@@ -117,9 +117,9 @@ public class CameraController : MonoBehaviour
                 }
             }
 
-            if (!_shouldZoomIn)
+            if (!_canZoomIn)
             {
-                _shouldZoomIn = true;
+                _canZoomIn = true;
             }
 
             yield return null;

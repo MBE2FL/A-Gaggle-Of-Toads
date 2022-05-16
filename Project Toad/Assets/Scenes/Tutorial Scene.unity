@@ -2270,7 +2270,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6961445349536657429, guid: 3af2f3e4dfd30b348aa700adfa0686a2, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3af2f3e4dfd30b348aa700adfa0686a2, type: 3}
 --- !u!4 &950400070 stripped
@@ -2510,12 +2511,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerOne: {fileID: 950400071}
   _playerTwo: {fileID: 1032409403}
-  _zoomSpeed: 1
+  _zoomSpeed: 0.02
   _isZoomingOut: 0
   _currZoomLevel: 0
   _minZoomLevel: 12
   _maxZoomLevel: 20
-  _camSpeed: 65
+  _camSpeed: 0.5
 --- !u!1001 &1032409401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2572,7 +2573,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6961445349536657429, guid: 3af2f3e4dfd30b348aa700adfa0686a2, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3af2f3e4dfd30b348aa700adfa0686a2, type: 3}
 --- !u!4 &1032409402 stripped
