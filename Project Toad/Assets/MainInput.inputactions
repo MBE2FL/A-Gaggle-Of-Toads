@@ -33,9 +33,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pick Up/Down",
+                    "name": "Put Down",
                     "type": "Button",
                     "id": "2feed899-fbb4-4393-a5d7-47fc8f43426b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pick Up",
+                    "type": "Button",
+                    "id": "2e6778f7-9899-4077-abbf-95a451c83a9e",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -135,26 +144,103 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "044cf7e7-59fe-4d1b-bc61-e7964518881d",
+                    "name": "Gamepad 1",
+                    "id": "4a3a421d-d734-40a9-a962-bab8b4716439",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Put Down",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "909d1cfa-5277-4e6b-8a7f-6e420a6d11c1",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pick Up/Down",
+                    "action": "Put Down",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "7ef19b3a-5fb4-4b8c-9210-59e3c0fa6fc0",
-                    "path": "<Keyboard>/e",
+                    "name": "binding",
+                    "id": "a275aa04-d50f-4452-8891-d2409ac5eb1d",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pick Up/Down",
+                    "action": "Put Down",
                     "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Gamepad 2",
+                    "id": "dfc7d258-da4e-4f98-9699-12039a1102b7",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Put Down",
+                    "isComposite": true,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "b0ff0e02-4a10-4b58-9f0f-4df3d8b0a63f",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Put Down",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "759d54b7-c473-41b5-a4e7-15c3bb7bf563",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Put Down",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Gamepad 3",
+                    "id": "d784a802-40b4-4309-8c99-877e5ccb2572",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Put Down",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "92e408cc-aa32-4903-b8d4-172f777a4763",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Put Down",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "0bc5f5ce-7b5b-4f07-9299-3a1a90ad8070",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Put Down",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "",
@@ -285,6 +371,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Yeet",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7ef19b3a-5fb4-4b8c-9210-59e3c0fa6fc0",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pick Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1f120bed-a87d-4a6c-bd71-ad8d8ebeeae4",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pick Up",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

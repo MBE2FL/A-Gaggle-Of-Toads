@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 	// Update is called once per frame
 	void Update()
 	{
-		
+
 
 		if(move && !stunned)
 		{
@@ -146,17 +146,17 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 
 	public void OnJump(InputAction.CallbackContext ctx)
 	{
-		
-		if(!ctx.started) return;
-		var body = GetComponent<Rigidbody>();
-		var collider = GetComponentInChildren<Collider>();
-		
-		var onfloor = Physics.Raycast(collider.bounds.min, Vector3.down, 0.5f);
-		Debug.DrawRay(collider.bounds.min, Vector3.down, Color.red, 0.5f);
 
-
-		if(onfloor)
-			body.AddForce(new Vector3(0, perams.jumpForce, 0), ForceMode.Impulse);
+		//if(!ctx.started) return;
+		//var body = GetComponent<Rigidbody>();
+		//var collider = GetComponentInChildren<Collider>();
+		//
+		//var onfloor = Physics.Raycast(collider.bounds.min, Vector3.down, 0.5f);
+		//Debug.DrawRay(collider.bounds.min, Vector3.down, Color.red, 0.5f);
+		//
+		//
+		//if(onfloor)
+		//	body.AddForce(new Vector3(0, perams.jumpForce, 0), ForceMode.Impulse);
 	}
 
 	private void OnEnable()
@@ -187,22 +187,17 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 	}
 
 
-	public void OnPickUpDown(InputAction.CallbackContext ctx)
-	{
-
-		
-	}
 
 	public void OnInventory(InputAction.CallbackContext context)
 	{
 		//	throw new System.NotImplementedException();
 	}
 
-	bool crouchToggle=false;
+	bool crouchToggle = false;
 	public void OnCrouch(InputAction.CallbackContext ctx)
 	{
-		//TODO: Replace with animation later
-		if(ctx.performed) { transform.localScale *= !crouchToggle ? .5f : 2; crouchToggle = !crouchToggle; }
+	//	//TODO: Replace with animation later
+	//	if(ctx.performed) { transform.localScale *= !crouchToggle ? .5f : 2; crouchToggle = !crouchToggle; }
 	}
 
 	public void OnInteract(InputAction.CallbackContext context)
@@ -213,5 +208,15 @@ public class PlayerMovement : MonoBehaviour, IInGameActions
 	public void OnYeet(InputAction.CallbackContext context)
 	{
 		throw new System.NotImplementedException();
+	}
+
+	public void OnPickUp(InputAction.CallbackContext context)
+	{
+		///		throw new System.NotImplementedException();
+	}
+
+	public void OnPutDown(InputAction.CallbackContext context)
+	{
+		//	throw new System.NotImplementedException();
 	}
 }

@@ -55,9 +55,18 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Pick Up/Down"",
+                    ""name"": ""Put Down"",
                     ""type"": ""Button"",
                     ""id"": ""2feed899-fbb4-4393-a5d7-47fc8f43426b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pick Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""2e6778f7-9899-4077-abbf-95a451c83a9e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -157,26 +166,103 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""044cf7e7-59fe-4d1b-bc61-e7964518881d"",
+                    ""name"": ""Gamepad 1"",
+                    ""id"": ""4a3a421d-d734-40a9-a962-bab8b4716439"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Put Down"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""909d1cfa-5277-4e6b-8a7f-6e420a6d11c1"",
                     ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Pick Up/Down"",
+                    ""action"": ""Put Down"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""7ef19b3a-5fb4-4b8c-9210-59e3c0fa6fc0"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""name"": ""binding"",
+                    ""id"": ""a275aa04-d50f-4452-8891-d2409ac5eb1d"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Pick Up/Down"",
+                    ""action"": ""Put Down"",
                     ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad 2"",
+                    ""id"": ""dfc7d258-da4e-4f98-9699-12039a1102b7"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Put Down"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""b0ff0e02-4a10-4b58-9f0f-4df3d8b0a63f"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Put Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""759d54b7-c473-41b5-a4e7-15c3bb7bf563"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Put Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad 3"",
+                    ""id"": ""d784a802-40b4-4309-8c99-877e5ccb2572"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Put Down"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""92e408cc-aa32-4903-b8d4-172f777a4763"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Put Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""0bc5f5ce-7b5b-4f07-9299-3a1a90ad8070"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Put Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -309,6 +395,28 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
                     ""action"": ""Yeet"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7ef19b3a-5fb4-4b8c-9210-59e3c0fa6fc0"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pick Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1f120bed-a87d-4a6c-bd71-ad8d8ebeeae4"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pick Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -348,7 +456,8 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
         m_InGame_Movement = m_InGame.FindAction("Movement", throwIfNotFound: true);
         m_InGame_Jump = m_InGame.FindAction("Jump", throwIfNotFound: true);
         m_InGame_Pause = m_InGame.FindAction("Pause", throwIfNotFound: true);
-        m_InGame_PickUpDown = m_InGame.FindAction("Pick Up/Down", throwIfNotFound: true);
+        m_InGame_PutDown = m_InGame.FindAction("Put Down", throwIfNotFound: true);
+        m_InGame_PickUp = m_InGame.FindAction("Pick Up", throwIfNotFound: true);
         m_InGame_Inventory = m_InGame.FindAction("Inventory", throwIfNotFound: true);
         m_InGame_Crouch = m_InGame.FindAction("Crouch", throwIfNotFound: true);
         m_InGame_Interact = m_InGame.FindAction("Interact", throwIfNotFound: true);
@@ -418,7 +527,8 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Movement;
     private readonly InputAction m_InGame_Jump;
     private readonly InputAction m_InGame_Pause;
-    private readonly InputAction m_InGame_PickUpDown;
+    private readonly InputAction m_InGame_PutDown;
+    private readonly InputAction m_InGame_PickUp;
     private readonly InputAction m_InGame_Inventory;
     private readonly InputAction m_InGame_Crouch;
     private readonly InputAction m_InGame_Interact;
@@ -430,7 +540,8 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_InGame_Movement;
         public InputAction @Jump => m_Wrapper.m_InGame_Jump;
         public InputAction @Pause => m_Wrapper.m_InGame_Pause;
-        public InputAction @PickUpDown => m_Wrapper.m_InGame_PickUpDown;
+        public InputAction @PutDown => m_Wrapper.m_InGame_PutDown;
+        public InputAction @PickUp => m_Wrapper.m_InGame_PickUp;
         public InputAction @Inventory => m_Wrapper.m_InGame_Inventory;
         public InputAction @Crouch => m_Wrapper.m_InGame_Crouch;
         public InputAction @Interact => m_Wrapper.m_InGame_Interact;
@@ -453,9 +564,12 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnPause;
-                @PickUpDown.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnPickUpDown;
-                @PickUpDown.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnPickUpDown;
-                @PickUpDown.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnPickUpDown;
+                @PutDown.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnPutDown;
+                @PutDown.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnPutDown;
+                @PutDown.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnPutDown;
+                @PickUp.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnPickUp;
+                @PickUp.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnPickUp;
+                @PickUp.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnPickUp;
                 @Inventory.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnInventory;
                 @Inventory.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnInventory;
                 @Inventory.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnInventory;
@@ -481,9 +595,12 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
-                @PickUpDown.started += instance.OnPickUpDown;
-                @PickUpDown.performed += instance.OnPickUpDown;
-                @PickUpDown.canceled += instance.OnPickUpDown;
+                @PutDown.started += instance.OnPutDown;
+                @PutDown.performed += instance.OnPutDown;
+                @PutDown.canceled += instance.OnPutDown;
+                @PickUp.started += instance.OnPickUp;
+                @PickUp.performed += instance.OnPickUp;
+                @PickUp.canceled += instance.OnPickUp;
                 @Inventory.started += instance.OnInventory;
                 @Inventory.performed += instance.OnInventory;
                 @Inventory.canceled += instance.OnInventory;
@@ -538,7 +655,8 @@ public partial class @MainInput : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
-        void OnPickUpDown(InputAction.CallbackContext context);
+        void OnPutDown(InputAction.CallbackContext context);
+        void OnPickUp(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);

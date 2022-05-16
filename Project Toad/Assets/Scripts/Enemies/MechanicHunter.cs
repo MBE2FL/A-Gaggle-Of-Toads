@@ -17,8 +17,6 @@ public class MechanicHunter : MonoBehaviour
 
 	public void dropMechanic()
 	{
-
-
 		_currentTarget = null;
 		searchForNearestPickUp();
 	}
