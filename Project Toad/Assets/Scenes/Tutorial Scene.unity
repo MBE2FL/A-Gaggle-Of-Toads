@@ -2515,7 +2515,7 @@ MonoBehaviour:
   _isZoomingOut: 0
   _currZoomLevel: 0
   _minZoomLevel: 12
-  _maxZoomLevel: 20
+  _maxZoomLevel: 18
   _camSpeed: 0.5
 --- !u!1001 &1032409401
 PrefabInstance:
