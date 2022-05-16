@@ -71,7 +71,7 @@ public class Boundary : MonoBehaviour
         //transform.position = currPos;
     }
 
-    public bool isAtScreenBoundary(Vector2 offset)
+    public bool isOverScreenBoundary(Vector2 offset)
     {
         //Vector2 screenWorldMax = _cam.ViewportToWorldPoint(new Vector3(0.0f, 0.0f, _cam.transform.position.z));
         //Vector2 screenWorldMin = _cam.ViewportToWorldPoint(new Vector3(1.0f, 1.0f, _cam.transform.position.z));
@@ -97,6 +97,24 @@ public class Boundary : MonoBehaviour
 
         return (playerMinViewPos.x < 0.0f || playerMaxViewPos.x > 1.0f ||
                 playerMinViewPos.y < 0.0f || playerMaxViewPos.y > 1.0f);
+    }
+
+    public bool isInScreenBoundary(Vector2 offset)
+    {
+        // Clamp this player's position, offsetted by it's colliders size, inside the screen's viewport.
+        Vector2 colliderHalfSize = _collider.bounds.extents;
+        Vector2 playerMinViewPos = transform.position;
+        playerMinViewPos.x -= colliderHalfSize.x + offset.x;
+        playerMinViewPos.y -= colliderHalfSize.y + offset.y;
+        playerMinViewPos = _cam.WorldToViewportPoint(playerMinViewPos);
+
+        Vector2 playerMaxViewPos = transform.position;
+        playerMaxViewPos.x += colliderHalfSize.x + offset.x;
+        playerMaxViewPos.y += colliderHalfSize.y + offset.y;
+        playerMaxViewPos = _cam.WorldToViewportPoint(playerMaxViewPos);
+
+        return (playerMinViewPos.x >= 0.0f && playerMaxViewPos.x <= 1.0f ||
+                playerMinViewPos.y >= 0.0f && playerMaxViewPos.y <= 1.0f);
     }
 
     //void OnDrawGizmosSelected()

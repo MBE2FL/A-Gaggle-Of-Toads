@@ -62,18 +62,19 @@ public class CameraController : MonoBehaviour
         _targetPos += medianDiff.x * transform.right;
         _targetPos += medianDiff.y * transform.up;
 
-        Debug.DrawLine(transform.position, medianPosition, Color.red);
-        // Debug.DrawLine(transform.rotation * _targetPos, medianPosition, Color.green);
-        Debug.DrawRay(medianPosition, rayDir, Color.green);
+        Debug.DrawRay(medianPosition, rayDir, Color.red);
         Ray midCamRay = _cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
         Debug.DrawRay(midCamRay.origin, midCamRay.direction, Color.blue);
 
-        bool arePlayersAtScreenBoundary = _playerOneBoundary.isAtScreenBoundary(new Vector2(1.0f, 1.0f)) ||
-                                            _playerTwoBoundary.isAtScreenBoundary(new Vector2(1.0f, 1.0f));
+        bool arePlayersOverScreenBoundary = _playerOneBoundary.isOverScreenBoundary(new Vector2(1.0f, 1.0f)) ||
+                                            _playerTwoBoundary.isOverScreenBoundary(new Vector2(1.0f, 1.0f));
+
+        bool arePlayersInScreenBoundary = _playerOneBoundary.isOverScreenBoundary(new Vector2(-2.0f, -2.0f)) ||
+                                    _playerTwoBoundary.isOverScreenBoundary(new Vector2(-2.0f, -2.0f));
 
 
         // Zoom out when players are at screen boundary.
-        if (arePlayersAtScreenBoundary ||
+        if (arePlayersOverScreenBoundary ||
             //transform.position.z > (_minZoomFactor + 0.05f))
             _currZoomLevel < (_minZoomLevel - 0.05f))
         {
@@ -83,7 +84,7 @@ public class CameraController : MonoBehaviour
             _shouldZoomIn = false;
         }
         // Both players are onscreen, but the camera is still zoomed out.
-        else if ((_currZoomLevel > _minZoomLevel) && _shouldZoomIn)
+        else if ((_currZoomLevel > _minZoomLevel) && _shouldZoomIn && !arePlayersInScreenBoundary)
         {
             //// Wait for the camera to finish zooming out bofore zooming in.
                 _currZoomLevel = Mathf.Max(_currZoomLevel, _minZoomLevel);
