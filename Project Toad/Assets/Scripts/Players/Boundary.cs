@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class Boundary : MonoBehaviour
 {
     Camera _cam;
+    [SerializeField]
     Collider _collider;
 
 
@@ -13,7 +16,10 @@ public class Boundary : MonoBehaviour
     {
         _cam = Camera.main;
         Debug.Assert(_cam, "Boundary: Start: Camera not assigned!");
-        _collider = GetComponent<Collider>();
+        if (!_collider)
+        {
+            _collider = GetComponentInChildren<Collider>();
+        }
         Debug.Assert(_collider, "Boundary: Start: Collider not assigned!");
     }
 
@@ -44,11 +50,11 @@ public class Boundary : MonoBehaviour
         
         if (playerMinViewPos.x < 0.0f)
         {
-            viewDiff.x -= playerMinViewPos.x;
+            viewDiff.x += playerMinViewPos.x;
         }
         if (playerMinViewPos.y < 0.0f)
         {
-            viewDiff.y -= playerMinViewPos.y;
+            viewDiff.y += playerMinViewPos.y;
         }
 
         Vector2 playerMaxViewPos = transform.position;
@@ -64,11 +70,31 @@ public class Boundary : MonoBehaviour
             viewDiff.y -= playerMaxViewPos.y;
         }
 
+        // TO-DO: Rather just cut off movement in particular direction.
+        //Vector3 currPos = transform.position;
+        //currPos += viewDiff.x * transform.right;
+        //currPos += viewDiff.y * transform.up;
+        //transform.position = currPos;
+    }
 
-        Vector3 currPos = transform.position;
-        currPos += viewDiff.x * transform.right;
-        currPos += viewDiff.y * transform.up;
-        transform.position = currPos;
+    public Vector2 getMinPosition()
+    {
+        Vector2 colliderHalfSize = _collider.bounds.extents;
+        Vector2 playerMinViewPos = transform.position;
+        playerMinViewPos.x -= colliderHalfSize.x;
+        playerMinViewPos.y -= colliderHalfSize.y;
+
+        return playerMinViewPos;
+    }
+
+    public Vector2 getMaxPosition()
+    {
+        Vector2 colliderHalfSize = _collider.bounds.extents;
+        Vector2 playerMaxViewPos = transform.position;
+        playerMaxViewPos.x += colliderHalfSize.x;
+        playerMaxViewPos.y += colliderHalfSize.y;
+
+        return playerMaxViewPos;
     }
 
     public bool isOverScreenBoundary(Vector2 offset)
@@ -86,35 +112,35 @@ public class Boundary : MonoBehaviour
         // Clamp this player's position, offsetted by it's colliders size, inside the screen's viewport.
         Vector2 colliderHalfSize = _collider.bounds.extents;
         Vector2 playerMinViewPos = transform.position;
-        playerMinViewPos.x -= colliderHalfSize.x + offset.x;
-        playerMinViewPos.y -= colliderHalfSize.y + offset.y;
+        playerMinViewPos.x -= colliderHalfSize.x;
+        playerMinViewPos.y -= colliderHalfSize.y;
         playerMinViewPos = _cam.WorldToViewportPoint(playerMinViewPos);
 
         Vector2 playerMaxViewPos = transform.position;
-        playerMaxViewPos.x += colliderHalfSize.x + offset.x;
-        playerMaxViewPos.y += colliderHalfSize.y + offset.y;
+        playerMaxViewPos.x += colliderHalfSize.x;
+        playerMaxViewPos.y += colliderHalfSize.y;
         playerMaxViewPos = _cam.WorldToViewportPoint(playerMaxViewPos);
 
-        return (playerMinViewPos.x < 0.0f || playerMaxViewPos.x > 1.0f ||
-                playerMinViewPos.y < 0.0f || playerMaxViewPos.y > 1.0f);
+        return (playerMinViewPos.x < (0.0f - offset.x) || playerMaxViewPos.x > (1.0f + offset.x) ||
+                playerMinViewPos.y < (0.0f - offset.y) || playerMaxViewPos.y > (1.0f + offset.y));
     }
 
-    public bool isInScreenBoundary(Vector2 offset)
+    public bool isInScreenBoundary(Vector2 offset = new Vector2())
     {
         // Clamp this player's position, offsetted by it's colliders size, inside the screen's viewport.
         Vector2 colliderHalfSize = _collider.bounds.extents;
         Vector2 playerMinViewPos = transform.position;
-        playerMinViewPos.x -= colliderHalfSize.x + offset.x;
-        playerMinViewPos.y -= colliderHalfSize.y + offset.y;
+        playerMinViewPos.x -= colliderHalfSize.x;
+        playerMinViewPos.y -= colliderHalfSize.y;
         playerMinViewPos = _cam.WorldToViewportPoint(playerMinViewPos);
 
         Vector2 playerMaxViewPos = transform.position;
-        playerMaxViewPos.x += colliderHalfSize.x + offset.x;
-        playerMaxViewPos.y += colliderHalfSize.y + offset.y;
+        playerMaxViewPos.x += colliderHalfSize.x;
+        playerMaxViewPos.y += colliderHalfSize.y;
         playerMaxViewPos = _cam.WorldToViewportPoint(playerMaxViewPos);
 
-        return (playerMinViewPos.x >= 0.0f && playerMaxViewPos.x <= 1.0f &&
-                playerMinViewPos.y >= 0.0f && playerMaxViewPos.y <= 1.0f);
+        return (playerMinViewPos.x >= (0.0f - offset.x) && playerMaxViewPos.x <= (1.0f + offset.x) &&
+                playerMinViewPos.y >= (0.0f - offset.y) && playerMaxViewPos.y <= (1.0f + offset.y));
     }
 
     //void OnDrawGizmosSelected()

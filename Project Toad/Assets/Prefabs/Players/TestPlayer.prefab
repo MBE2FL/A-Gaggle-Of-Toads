@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 6961445349108347282}
   - component: {fileID: 6961445349108347281}
   - component: {fileID: 6961445349108347280}
-  - component: {fileID: 6961445349108347283}
-  - component: {fileID: 6961445349108347286}
+  - component: {fileID: 916620284292466388}
   m_Layer: 6
   m_Name: Capsule
   m_TagString: Player
@@ -85,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6961445349108347283
+--- !u!136 &916620284292466388
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,18 +98,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6961445349108347286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6961445349108347277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff479860f92aead4d8c33b15d6c2bd8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6961445349536657431
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,6 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6961445349536657435}
   - component: {fileID: 6961445349536657434}
+  - component: {fileID: 6309514815215466655}
   - component: {fileID: 2590485768491749888}
   - component: {fileID: 6961445349536657428}
   - component: {fileID: 6961445349536657432}
@@ -145,7 +133,7 @@ Transform:
   m_Children:
   - {fileID: 6961445349108347282}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6961445349536657434
 Rigidbody:
@@ -163,6 +151,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &6309514815215466655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6961445349536657431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff479860f92aead4d8c33b15d6c2bd8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 0}
 --- !u!114 &2590485768491749888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +177,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onPickupObject:
+    m_PersistentCalls:
+      m_Calls: []
+  onPutDownObject:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &6961445349536657428

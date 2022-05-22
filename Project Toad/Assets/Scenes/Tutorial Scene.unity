@@ -2270,8 +2270,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6961445349536657429, guid: 3af2f3e4dfd30b348aa700adfa0686a2, type: 3}
+    m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3af2f3e4dfd30b348aa700adfa0686a2, type: 3}
 --- !u!4 &950400070 stripped
@@ -2489,14 +2488,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1029221832}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.2164396, y: 0, z: 0, w: 0.97629607}
   m_LocalPosition: {x: -2.75, y: 1.37, z: -40.775826}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1933358255}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 25, y: 0, z: 0}
 --- !u!114 &1029221836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2512,7 +2511,6 @@ MonoBehaviour:
   _playerOne: {fileID: 950400071}
   _playerTwo: {fileID: 1032409403}
   _zoomSpeed: 0.02
-  _isZoomingOut: 0
   _currZoomLevel: 0
   _minZoomLevel: 12
   _maxZoomLevel: 18
@@ -2575,6 +2573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6961445349536657429, guid: 3af2f3e4dfd30b348aa700adfa0686a2, type: 3}
+    - {fileID: 6961445349108347286, guid: 3af2f3e4dfd30b348aa700adfa0686a2, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3af2f3e4dfd30b348aa700adfa0686a2, type: 3}
 --- !u!4 &1032409402 stripped
